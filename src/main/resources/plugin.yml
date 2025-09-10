@@ -1,4 +1,4 @@
-name: Heart Gambler
+name: HeartGambler
 version: '1.0'
 main: elevate.heartGambler.HeartGambler
 api-version: '1.21'
