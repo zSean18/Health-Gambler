@@ -23,7 +23,7 @@ public final class PlayerHealthUtil {
     }
 
     public static void applySavedDelta(Player player, NamespacedKey key) {
-        AttributeInstance max = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        AttributeInstance max = player.getAttribute(Attribute.MAX_HEALTH);
         if (max == null) return;
         double delta = getSavedDelta(player, key);
         double newBase = 20.0 + delta; // vanilla = 20.0 (10 hearts)
