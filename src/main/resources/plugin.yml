@@ -2,3 +2,22 @@ name: Heart Gambler
 version: '1.0'
 main: elevate.heartGambler.HeartGambler
 api-version: '1.21'
+author: elevate
+commands:
+  phantomapple:
+    description: Set/view drop chance or give a test apple
+    usage: |
+      /phantomapple
+      /phantomapple chance <0-100>
+      /phantomapple give <player> [amount]
+  hearts:
+    description: Give or take permanent hearts from a player
+    usage: |
+      /hearts give <player> <hearts>
+      /hearts take <player> <hearts>
+    permission: hearts.admin
+permissions:
+  phantomapple.admin:
+    default: op
+  hearts.admin:
+    default: op
