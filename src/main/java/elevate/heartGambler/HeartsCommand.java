@@ -48,9 +48,8 @@ public class HeartsCommand implements CommandExecutor {
             return true;
         }
 
-        // current saved delta (in health points, 2.0 = 1 heart)
         double delta = PlayerHealthUtil.getSavedDelta(target, plugin.getPlayerDeltaKey());
-        double base = 20.0; // vanilla 10 hearts
+        double base = 20.0;
         double amountHp = hearts * 2.0;
 
         switch (sub.toLowerCase()) {
@@ -65,11 +64,10 @@ public class HeartsCommand implements CommandExecutor {
                 return true;
             }
             case "take": {
-                // do not allow going below 4 hearts total (8.0 hp)
                 double newTotal = base + delta - amountHp;
                 if (newTotal < 8.0) {
-                    amountHp = (base + delta) - 8.0; // clamp removal
-                    if (amountHp < 0) amountHp = 0;   // nothing to take
+                    amountHp = (base + delta) - 8.0;
+                    if (amountHp < 0) amountHp = 0;
                 }
                 delta -= amountHp;
                 PlayerHealthUtil.saveAndApplyDelta(target, plugin.getPlayerDeltaKey(), delta);
@@ -94,7 +92,7 @@ public class HeartsCommand implements CommandExecutor {
     }
 
     private void clampCurrentHealthToMax(Player player) {
-        AttributeInstance maxAttr = player.getAttribute(Attribute.MAX_HEALTH);
+        AttributeInstance maxAttr = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         if (maxAttr == null) return;
         double newMax = maxAttr.getBaseValue();
         if (player.getHealth() > newMax) {

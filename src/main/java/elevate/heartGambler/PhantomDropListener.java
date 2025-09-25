@@ -1,6 +1,5 @@
 package elevate.heartGambler;
 
-import elevate.heartGambler.HeartGambler;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

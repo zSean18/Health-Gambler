@@ -15,14 +15,11 @@ public class HeartPersistListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        // Re-apply saved max-health delta as soon as the player logs in
         PlayerHealthUtil.applySavedDelta(event.getPlayer(), plugin.getPlayerDeltaKey());
     }
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
-        // Re-apply on respawn (new player entity)
-        // Run one tick later to ensure the attribute instance exists
         plugin.getServer().getScheduler().runTask(plugin, () ->
                 PlayerHealthUtil.applySavedDelta(event.getPlayer(), plugin.getPlayerDeltaKey())
         );

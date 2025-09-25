@@ -1,6 +1,5 @@
-package elevate.healthgambler;
+package elevate.heartGambler;
 
-import elevate.heartGambler.HeartGambler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -19,7 +18,6 @@ public class PhantomAppleCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        // No args: show current chance + help
         if (args.length == 0) {
             int chance = plugin.getConfig().getInt("drop_chance", 10);
             sender.sendMessage(ChatColor.YELLOW + "Current drop chance: " + chance + "%");
@@ -29,7 +27,6 @@ public class PhantomAppleCommand implements CommandExecutor {
             return true;
         }
 
-        // Set chance
         if (args.length == 2 && args[0].equalsIgnoreCase("chance")) {
             if (!sender.hasPermission("phantomapple.admin")) {
                 sender.sendMessage(ChatColor.RED + "You don't have permission.");
@@ -47,7 +44,6 @@ public class PhantomAppleCommand implements CommandExecutor {
             return true;
         }
 
-        // Give command: /phantomapple give <player> [amount]
         if (args[0].equalsIgnoreCase("give")) {
             if (!sender.hasPermission("phantomapple.admin")) {
                 sender.sendMessage(ChatColor.RED + "You don't have permission.");
@@ -77,15 +73,14 @@ public class PhantomAppleCommand implements CommandExecutor {
             ItemStack apple = plugin.createGambleApple();
             apple.setAmount(amount);
             target.getInventory().addItem(apple);
-
             sender.sendMessage(ChatColor.GREEN + "Gave " + amount + " gamble apple(s) to " + target.getName() + ".");
+
             if (sender != target) {
                 target.sendMessage(ChatColor.LIGHT_PURPLE + "You received " + amount + " gamble apple(s)!");
             }
             return true;
         }
 
-        // Fallback usage
         sender.sendMessage(ChatColor.RED + "Usage: /" + label + " chance <0-100> | give <player> [amount]");
         return true;
     }
